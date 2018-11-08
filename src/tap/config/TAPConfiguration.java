@@ -16,7 +16,8 @@ package tap.config;
  * You should have received a copy of the GNU Lesser General Public License
  * along with TAPLibrary.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2015-2017 - Astronomisches Rechen Institut (ARI)
+ * Copyright 2015-2018 - UDS/Centre de Données astronomiques de Strasbourg (CDS),
+ *                       Astronomisches Rechen Institut (ARI)
  */
 
 import java.lang.reflect.Constructor;
@@ -30,13 +31,17 @@ import tap.TAPFactory;
 import tap.backup.DefaultTAPBackupManager;
 
 /**
- * <p>Utility class gathering tool functions and properties' names useful to deal with a TAP configuration file.</p>
+ * Utility class gathering tool functions and properties' names useful to
+ * deal with a TAP configuration file.
  *
- * <p><i>This class implements the Design Pattern "Utility": no instance of this class can be created, it can not be extended,
- * and it must be used only thanks to its static classes and attributes.</i></p>
+ * <p><i>
+ * 	This class implements the Design Pattern "Utility": no instance of this
+ * 	class can be created, it can not be extended, and it must be used only
+ * 	thanks to its static classes and attributes.
+ * </i></p>
  *
- * @author Gr&eacute;gory Mantelet (ARI)
- * @version 2.1 (09/2017)
+ * @author Gr&eacute;gory Mantelet (CDS;ARI)
+ * @version 2.3 (11/2018)
  * @since 2.0
  */
 public final class TAPConfiguration {
@@ -83,14 +88,26 @@ public final class TAPConfiguration {
 	/** Name/Key of the property specifying the logger to use.
 	 * By default, {@link tap.log.DefaultTAPLog} is used. */
 	public final static String KEY_LOGGER = "logger";
-	/** Default value of the property {@link #KEY_LOGGER}: {@value #DEFAULT_LOGGER}. */
+	/** Default value of the property {@link #KEY_LOGGER}:
+	 * {@value #DEFAULT_LOGGER}. */
 	public final static String DEFAULT_LOGGER = "default";
-	/** Name/Key of the property specifying the minimum type of messages (i.e. DEBUG, INFO, WARNING, ERROR, FATAL)
-	 * that must be logged. By default all messages are logged...which is equivalent to set this property to "DEBUG". */
+	/** Name/Key of the property specifying the minimum type of messages
+	 * (i.e. DEBUG, INFO, WARNING, ERROR, FATAL) that must be logged by the
+	 * <strong>default logger</strong>.
+	 * <p>By default all messages are logged...which is equivalent to set this
+	 * property to "DEBUG".</p>
+	 * <p><i><b>Note:</b> If {@link #KEY_LOGGER} is set to a value different
+	 * from {@value #DEFAULT_LOGGER}, this property is ignored.</i></p> */
 	public final static String KEY_MIN_LOG_LEVEL = "min_log_level";
-	/** Name/Key of the property specifying the frequency of the log file rotation.
-	 * By default the log rotation occurs every day at midnight. */
+	/** Name/Key of the property specifying the frequency of the log file
+	 * rotation to set in the <strong>default logger</strong>.
+	 * <p>By default the log rotation occurs every day at midnight.</p>
+	 * <p><i><b>Note:</b> If {@link #KEY_LOGGER} is set to a value different
+	 * from {@value #DEFAULT_LOGGER}, this property is ignored.</i></p> */
 	public final static String KEY_LOG_ROTATION = "log_rotation";
+	/** SLF4J logger value: {@value #SLF4J_LOGGER}.
+	 * @since 2.3 */
+	public final static String SLF4J_LOGGER = "slf4j";
 
 	/* UWS BACKUP */
 	/** Name/Key of the property specifying the frequency (in milliseconds) of jobs backup.
@@ -140,21 +157,21 @@ public final class TAPConfiguration {
 	/** Value of the property {@link #KEY_SQL_TRANSLATOR} to select a PgSphere translator. */
 	public final static String VALUE_PGSPHERE = "pgsphere";
 	/** Value of the property {@link #KEY_SQL_TRANSLATOR} to select an SQLServer translator.
-	 * @since 2.1*/
+	 * @since 2.1 */
 	public final static String VALUE_SQLSERVER = "sqlserver";
 	/** Value of the property {@link #KEY_SQL_TRANSLATOR} to select a MySQL translator.
-	 * @since 2.1*/
+	 * @since 2.1 */
 	public final static String VALUE_MYSQL = "mysql";
 	/** Name/Key of the property specifying by how many rows the library should fetch a query result from the database.
 	 * This is the fetch size for to apply for synchronous queries. */
 	public final static String KEY_SYNC_FETCH_SIZE = "sync_fetch_size";
 	/** Default value of the property {@link #KEY_SYNC_FETCH_SIZE}: {@value #DEFAULT_SYNC_FETCH_SIZE}. */
-	public final static int DEFAULT_SYNC_FETCH_SIZE = 10000;
+	public final static int DEFAULT_SYNC_FETCH_SIZE = 1000;
 	/** Name/Key of the property specifying by how many rows the library should fetch a query result from the database.
 	 * This is the fetch size for to apply for asynchronous queries. */
 	public final static String KEY_ASYNC_FETCH_SIZE = "async_fetch_size";
 	/** Default value of the property {@link #KEY_ASYNC_FETCH_SIZE}: {@value #DEFAULT_ASYNC_FETCH_SIZE}. */
-	public final static int DEFAULT_ASYNC_FETCH_SIZE = 100000;
+	public final static int DEFAULT_ASYNC_FETCH_SIZE = 10000;
 	/** Name/Key of the property specifying the name of the DataSource into the JDNI. */
 	public final static String KEY_DATASOURCE_JNDI_NAME = "datasource_jndi_name";
 	/** Name/Key of the property specifying the full class name of the JDBC driver.
@@ -164,7 +181,7 @@ public final class TAPConfiguration {
 	/** List of the most known JDBC drivers. For the moment this list contains 4 drivers:
 	 * oracle ("oracle.jdbc.OracleDriver"), postgresql ("org.postgresql.Driver"), mysql ("com.mysql.jdbc.Driver"),
 	 * sqlite ("org.sqlite.JDBC") and h2 ("org.h2.Driver"). */
-	public final static HashMap<String,String> VALUE_JDBC_DRIVERS = new HashMap<String,String>(4);
+	public final static HashMap<String, String> VALUE_JDBC_DRIVERS = new HashMap<String, String>(4);
 	static{
 		VALUE_JDBC_DRIVERS.put("oracle", "oracle.jdbc.OracleDriver");
 		VALUE_JDBC_DRIVERS.put("postgresql", "org.postgresql.Driver");
@@ -191,6 +208,11 @@ public final class TAPConfiguration {
 	/** Name/Key of the property specifying the local file path of the XML file containing the TAP metadata to load. */
 	public final static String KEY_METADATA_FILE = "metadata_file";
 
+	/* DATALINK KEY */
+	/** Name/Key of the property providing the API for the Datalink capability.
+	 * @since 2.3 */
+	public final static String KEY_DATALINK = "datalink";
+
 	/* HOME PAGE KEY */
 	/** Name/Key of the property specifying the TAP home page to use.
 	 * It can be a file, a URL or a class. If null, the default TAP home page of the library is used.
@@ -216,17 +238,42 @@ public final class TAPConfiguration {
 	public final static String KEY_SERVICE_DESCRIPTION = "service_description";
 
 	/* UPLOAD KEYS */
-	/** Name/Key of the property indicating whether the UPLOAD feature must be enabled or not.
-	 * By default, this feature is disabled. */
+	/** Name/Key of the property indicating whether the UPLOAD feature must be
+	 * enabled or not. By default, this feature is disabled. */
 	public final static String KEY_UPLOAD_ENABLED = "upload_enabled";
-	/** Name/Key of the property specifying the default limit (in rows or bytes) on the uploaded VOTable(s). */
+	/** Name/Key of the property specifying the default limit (in rows or bytes)
+	 * on the uploaded VOTable(s).
+	 * @deprecated	Since 2.3, use the property {@value #KEY_MAX_UPLOAD_LIMIT}
+	 *            	instead. */
+	@Deprecated
 	public final static String KEY_DEFAULT_UPLOAD_LIMIT = "upload_default_db_limit";
-	/** Name/Key of the property specifying the maximum limit (in rows or bytes) on the uploaded VOTable(s). */
+	/** Name/Key of the property specifying the maximum limit (in rows or bytes)
+	 * on the uploaded VOTable(s). */
 	public final static String KEY_MAX_UPLOAD_LIMIT = "upload_max_db_limit";
-	/** Name/Key of the property specifying the maximum size of all VOTable(s) uploaded in a query. */
+	/** Default value of the property {@value #KEY_MAX_UPLOAD_LIMIT} =
+	 * {@value #DEFAULT_MAX_UPLOAD_LIMIT}.
+	 * @since 2.3 */
+	public final static String DEFAULT_MAX_UPLOAD_LIMIT = "1000000r";
+	/** Name/Key of the property specifying the maximum size of all VOTable(s)
+	 * uploaded in a query.
+	 * @deprecated	Since 2.3, use the property {@value #KEY_MAX_UPLOAD_LIMIT}
+	 *            	and {@value #KEY_MAX_REQUEST_LIMIT} instead. */
+	@Deprecated
 	public final static String KEY_UPLOAD_MAX_FILE_SIZE = "upload_max_file_size";
-	/** Default value of the property {@link #KEY_UPLOAD_MAX_FILE_SIZE}: {@value #DEFAULT_UPLOAD_MAX_FILE_SIZE}.  */
+	/** Default value of the property {@value #KEY_UPLOAD_MAX_FILE_SIZE} =
+	 * {@value #DEFAULT_UPLOAD_MAX_FILE_SIZE}.
+	 * @deprecated	Since 2.3, use the property {@value #KEY_MAX_UPLOAD_LIMIT}
+	 *            	and {@value #KEY_MAX_REQUEST_LIMIT} instead. */
+	@Deprecated
 	public final static int DEFAULT_UPLOAD_MAX_FILE_SIZE = Integer.MAX_VALUE;
+	/** Name/Key of the property specifying the maximum size of a whole HTTP
+	 * Multipart Request.
+	 * @since 2.3 */
+	public final static String KEY_UPLOAD_MAX_REQUEST_SIZE = "upload_max_request_size";
+	/** Default value of the property {@value #KEY_UPLOAD_MAX_REQUEST_SIZE} =
+	 * {@value #DEFAULT_UPLOAD_MAX_REQUEST_SIZE}.
+	 * @since 2.3 */
+	public final static int DEFAULT_UPLOAD_MAX_REQUEST_SIZE = 250 * 1024 * 1024;
 
 	/* OUTPUT KEYS */
 	/** Name/Key of the property specifying the list of all result output formats to support.
@@ -298,7 +345,8 @@ public final class TAPConfiguration {
 	public final static String KEY_TAP_FACTORY = "tap_factory";
 
 	/** No instance of this class should be created. */
-	private TAPConfiguration(){}
+	private TAPConfiguration(){
+	}
 
 	/**
 	 * <p>Read the asked property from the given Properties object.</p>
@@ -354,7 +402,7 @@ public final class TAPConfiguration {
 	 * @see #isClassName(String)
 	 */
 	@SuppressWarnings("unchecked")
-	public final static < C > Class<? extends C> fetchClass(final String value, final String propertyName, final Class<C> expectedType) throws TAPException{
+	public final static <C> Class<? extends C> fetchClass(final String value, final String propertyName, final Class<C> expectedType) throws TAPException{
 		if (!isClassName(value))
 			return null;
 
@@ -391,7 +439,7 @@ public final class TAPConfiguration {
 	 *
 	 * @since 2.1
 	 */
-	public final static < C > boolean hasConstructor(final String propValue, final String propName, final Class<C> expectedType, final Class<?>[] pTypes) throws TAPException{
+	public final static <C> boolean hasConstructor(final String propValue, final String propName, final Class<C> expectedType, final Class<?>[] pTypes) throws TAPException{
 		// Ensure the given name is a class name specification:
 		if (!isClassName(propValue))
 			throw new TAPException("Class name expected for the property \"" + propName + "\" instead of: \"" + propValue + "\"! The specified class must extend/implement " + expectedType.getName() + ".");
@@ -429,7 +477,7 @@ public final class TAPConfiguration {
 	 * @see #isClassName(String)
 	 * @see #fetchClass(String, String, Class)
 	 */
-	public final static < C > C newInstance(final String propValue, final String propName, final Class<C> expectedType) throws TAPException{
+	public final static <C> C newInstance(final String propValue, final String propName, final Class<C> expectedType) throws TAPException{
 		return newInstance(propValue, propName, expectedType, null, null);
 	}
 
@@ -457,7 +505,7 @@ public final class TAPConfiguration {
 	 * @see #isClassName(String)
 	 * @see #fetchClass(String, String, Class)
 	 */
-	public final static < C > C newInstance(final String propValue, final String propName, final Class<C> expectedType, final Class<?>[] pTypes, final Object[] parameters) throws TAPException{
+	public final static <C> C newInstance(final String propValue, final String propName, final Class<C> expectedType, final Class<?>[] pTypes, final Object[] parameters) throws TAPException{
 		// Ensure the given name is a class name specification:
 		if (!isClassName(propValue))
 			throw new TAPException("Class name expected for the property \"" + propName + "\" instead of: \"" + propValue + "\"! The specified class must extend/implement " + expectedType.getName() + ".");
@@ -506,41 +554,97 @@ public final class TAPConfiguration {
 	}
 
 	/**
-	 * <p>Lets parsing a limit (for output, upload, ...) with its numeric value and its unit.</p>
+	 * Lets parsing a limit (for output, upload, ...) with its numeric value
+	 * and its unit.
+	 *
 	 * <p>
 	 * 	Here is the expected syntax: num_val[unit].
-	 * 	Where unit is optional and should be one of the following values: r or R, B, kB, MB, GB.
-	 * 	If the unit is not specified, it is set by default to ROWS.
+	 * 	Where unit is optional and should be one of the following values:
+	 * 	r or R, B, kB, MB, GB. If the unit is not specified, it is set by
+	 * 	default to ROWS.
 	 * </p>
-	 * <p><i>Note: If the value is strictly less than 0 (whatever is the unit), the returned value will be -1.</i></p>
 	 *
-	 * @param value				Property value (must follow the limit syntax: num_val[unit] ; ex: 20kB or 2000 (for 2000 rows)).
+	 * <p><i>Note:
+	 * 	If the value is strictly less than 0 (whatever is the unit), the
+	 * 	returned value will be -1.
+	 * </i></p>
+	 *
+	 * @param value				Property value (must follow the limit syntax:
+	 *             				num_val[unit] ; ex: 20kB or 2000
+	 *             				(for 2000 rows)).
 	 * @param propertyName		Name of the property which specify the limit.
-	 * @param areBytesAllowed	Tells whether the unit BYTES is allowed. If not and a BYTES unit is encountered, then an exception is thrown.
+	 * @param areBytesAllowed	Tells whether the unit BYTES is allowed. If not
+	 *                       	and a BYTES unit is encountered, then an
+	 *                       	exception is thrown.
 	 *
-	 * @return	An array with always 2 items: [0]=numeric value (of type Integer), [1]=unit (of type {@link LimitUnit}).
+	 * @return	An array with always 2 items:
+	 *        	[0]=numeric value (of type Integer),
+	 *        	[1]=unit (of type {@link LimitUnit}).
 	 *
-	 * @throws TAPException	If the syntax is incorrect or if a not allowed unit has been used.
+	 * @throws TAPException	If the syntax is incorrect
+	 *                     	or if a not allowed unit has been used.
+	 *
+	 * @see #parseLimit(String, String, boolean, boolean)
 	 */
 	public final static Object[] parseLimit(String value, final String propertyName, final boolean areBytesAllowed) throws TAPException{
+		return parseLimit(value, propertyName, areBytesAllowed, false);
+	}
+
+	/**
+	 * Lets parsing a limit (for output, upload, ...) with its numeric value
+	 * and its unit.
+	 *
+	 * <p>
+	 * 	Here is the expected syntax: num_val[unit].
+	 * 	Where unit is optional and should be one of the following values:
+	 * 	r or R, B, kB, MB, GB. If the unit is not specified, it is set by
+	 * 	default to ROWS.
+	 * </p>
+	 *
+	 * <p><i>Note:
+	 * 	If the value is strictly less than 0 (whatever is the unit), the
+	 * 	returned value will be -1.
+	 * </i></p>
+	 *
+	 * @param value				Property value (must follow the limit syntax:
+	 *             				num_val[unit] ; ex: 20kB or 2000
+	 *             				(for 2000 rows)).
+	 * @param propertyName		Name of the property which specify the limit.
+	 * @param areBytesAllowed	Tells whether the unit BYTES is allowed. If not
+	 *                       	and a BYTES unit is encountered, then an
+	 *                       	exception is thrown.
+	 * @param longValue			<code>true</code> to get the limit as a long,
+	 *                 			<code>false</code> to get it as an int.
+	 *
+	 * @return	An array with always 2 items:
+	 *        	[0]=numeric value (of type Integer or Long in function of the
+	 *        	    parameter longValue),
+	 *        	[1]=unit (of type {@link LimitUnit}).
+	 *
+	 * @throws TAPException	If the syntax is incorrect
+	 *                     	or if a not allowed unit has been used.
+	 *
+	 * @since 2.3
+	 */
+	public final static Object[] parseLimit(String value, final String propertyName, final boolean areBytesAllowed, final boolean longValue) throws TAPException{
 		// Remove any whitespace inside or outside the numeric value and its unit:
 		if (value != null)
 			value = value.replaceAll("\\s", "");
 
 		// If empty value, return an infinite limit:
 		if (value == null || value.length() == 0)
-			return new Object[]{-1,LimitUnit.rows};
+			return (longValue ? new Object[]{ new Long(-1L), LimitUnit.rows } : new Object[]{ new Integer(-1), LimitUnit.rows });
 
 		// A. Parse the string from the end in order to extract the unit part.
 		//    The final step of the loop is the extraction of the numeric value, when the first digit is encountered.
-		int numValue = -1;
+		long numValue = -1;
 		LimitUnit unit;
 		StringBuffer buf = new StringBuffer();
 		for(int i = value.length() - 1; i >= 0; i--){
 			// if a digit, extract the numeric value:
 			if (value.charAt(i) >= '0' && value.charAt(i) <= '9'){
 				try{
-					numValue = Integer.parseInt(value.substring(0, i + 1));
+					numValue = Long.parseLong(value.substring(0, i + 1));
 					break;
 				}catch(NumberFormatException nfe){
 					throw new TAPException("Integer expected for the property " + propertyName + " for the substring \"" + value.substring(0, i + 1) + "\" of the whole value: \"" + value + "\"!");
@@ -596,7 +700,10 @@ public final class TAPConfiguration {
 			}
 		}
 
-		return new Object[]{((numValue < 0) ? -1 : numValue),unit};
+		if (numValue < 0)
+			return (longValue ? new Object[]{ new Long(-1L), unit } : new Object[]{ new Integer(-1), unit });
+		else
+			return (longValue ? new Object[]{ new Long(numValue), unit } : new Object[]{ new Integer((int)numValue), unit });
 	}
 
 }
