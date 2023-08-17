@@ -26,7 +26,7 @@ import java.util.List;
 
 import adql.query.IdentifierField;
 import adql.query.from.ADQLTable;
-import cds.utils.TextualSearchList;
+import tap.util.TextualSearchList;
 
 /**
  * <p>A list of {@link DBTable} elements ordered by their ADQL name in an ascending manner.</p>

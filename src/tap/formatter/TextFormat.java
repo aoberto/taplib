@@ -26,13 +26,13 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 import adql.db.DBColumn;
-import cds.util.LargeAsciiTable;
-import cds.util.LargeAsciiTable.LineProcessor;
-import cds.util.LargeAsciiTable.LineProcessorException;
 import tap.ServiceConnection;
 import tap.TAPException;
 import tap.TAPExecutionReport;
 import tap.data.TableIterator;
+import tap.util.LargeAsciiTable;
+import tap.util.LargeAsciiTable.LineProcessor;
+import tap.util.LargeAsciiTable.LineProcessorException;
 
 /**
  * Format any given query (table) result into a simple table ASCII
