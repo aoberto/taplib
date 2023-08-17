@@ -1,4 +1,4 @@
-package cds.utils;
+package tap.util;
 
 /*
  * This file is part of ADQLLibrary.

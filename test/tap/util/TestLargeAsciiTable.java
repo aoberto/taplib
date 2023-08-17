@@ -1,4 +1,4 @@
-package cds.util;
+package tap.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
-import cds.util.LargeAsciiTable.AsciiTableIterator;
-import cds.util.LargeAsciiTable.LineProcessor;
-import cds.util.LargeAsciiTable.LineProcessorException;
+import tap.util.LargeAsciiTable.AsciiTableIterator;
+import tap.util.LargeAsciiTable.LineProcessor;
+import tap.util.LargeAsciiTable.LineProcessorException;
 
 public class TestLargeAsciiTable {
 

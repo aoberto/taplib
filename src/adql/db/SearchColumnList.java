@@ -31,7 +31,7 @@ import java.util.NoSuchElementException;
 import adql.query.IdentifierField;
 import adql.query.from.ADQLJoin;
 import adql.query.operand.ADQLColumn;
-import cds.utils.TextualSearchList;
+import tap.util.TextualSearchList;
 
 /**
  * <p>A list of {@link DBColumn} elements ordered by their ADQL name in an ascending manner.</p>
