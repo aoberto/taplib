@@ -1894,7 +1894,7 @@ public class UWSJob extends SerializableUWSObject {
 				// delete the internal reference to this input parameter:
 				files.remove();
 			} catch(IOException ioe) {
-				getLogger().logJob(LogLevel.ERROR, this, "CLEAR_RESOURCES", "Impossible to delete the file uploaded as parameter \"" + upl.paramName + "\" (" + upl.getLocation() + ") of the job \"" + jobId + "\"!", null);
+				getLogger().logJob(LogLevel.ERROR, this, "CLEAR_RESOURCES", "Impossible to delete the file uploaded as parameter \"" + upl.getParamName() + "\" (" + upl.getLocation() + ") of the job \"" + jobId + "\"!", null);
 			}
 		}
 

@@ -469,7 +469,7 @@ public class LocalUWSFileManager implements UWSFileManager {
 		// Check the source file:
 		File source = getFile(upload);
 		if (!source.exists())
-			throw new FileNotFoundException("The uploaded file submitted with the parameter \"" + upload.paramName + "\" can not be found any more on the server!");
+			throw new FileNotFoundException("The uploaded file submitted with the parameter \"" + upload.getParamName() + "\" can not be found any more on the server!");
 		// Return the stream:
 		return new FileInputStream(source);
 	}
@@ -505,7 +505,7 @@ public class LocalUWSFileManager implements UWSFileManager {
 		// Check the source file:
 		File source = getFile(upload);
 		if (!source.exists())
-			throw new FileNotFoundException("The uploaded file submitted with the parameter \"" + upload.paramName + "\" can not be found any more on the server!");
+			throw new FileNotFoundException("The uploaded file submitted with the parameter \"" + upload.getParamName() + "\" can not be found any more on the server!");
 
 		// Build the final location (in the owner directory, under the name "UPLOAD_{job-id}_{param-name}":
 		File ownerDir = getOwnerDirectory(destination.getOwner());
