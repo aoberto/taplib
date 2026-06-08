@@ -16,7 +16,7 @@ package uws.job;
  * You should have received a copy of the GNU Lesser General Public License
  * along with UWSLibrary.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2012-2025 - UDS/Centre de Données astronomiques de Strasbourg (CDS),
+ * Copyright 2012-2024 - UDS/Centre de Données astronomiques de Strasbourg (CDS),
  *                       Astronomisches Rechen Institut (ARI)
  */
 
@@ -123,7 +123,7 @@ import java.util.*;
  * </ul>
  *
  * @author	Gr&eacute;gory Mantelet (CDS;ARI)
- * @version	4.5 (02/2025)
+ * @version	4.5 (08/2024)
  */
 public class UWSJob extends SerializableUWSObject {
 	private static final long serialVersionUID = 1L;

@@ -16,7 +16,11 @@ package uws.service.file;
  * You should have received a copy of the GNU Lesser General Public License
  * along with UWSLibrary.  If not, see <http://www.gnu.org/licenses/>.
  *
+<<<<<<< HEAD
  * Copyright 2012-2025 - UDS/Centre de Données astronomiques de Strasbourg (CDS),
+=======
+ * Copyright 2012-2024 - UDS/Centre de Données astronomiques de Strasbourg (CDS),
+>>>>>>> upstream/extended-upload
  *                       Astronomisches Rechen Institut (ARI)
  */
 
@@ -78,7 +82,7 @@ import uws.service.request.UploadFile;
  * </p>
  *
  * @author Gr&eacute;gory Mantelet (CDS;ARI)
- * @version 4.5 (02/2025)
+ * @version 4.5 (08/2024)
  */
 public class LocalUWSFileManager implements UWSFileManager {
 
