@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,6 +54,8 @@ import uk.ac.starlink.votable.DataFormat;
 import uk.ac.starlink.votable.VOSerializer;
 import uk.ac.starlink.votable.VOStarTable;
 import uk.ac.starlink.votable.VOTableVersion;
+import uk.ac.starlink.table.URLValueInfo;
+
 
 /**
  * Format any given query (table) result into VOTable.
@@ -660,6 +664,14 @@ public class VOTableFormat implements OutputFormat {
 		if (tapCol.getCoosys() != null)
 			colInfo.setAuxDatum(new DescribedValue(VOStarTable.REF_INFO, tapCol.getCoosys().getId()));
 
+		// Set the link to simbad query id web page result (if any)
+		try {
+			if (tapCol.getDBName() !=null && tapCol.getDBName().equalsIgnoreCase("id_princ"))
+				colInfo.setAuxDatum(new DescribedValue(new URLValueInfo(null, "Simbad Web-page for this object."),
+					new URL("http://simbad.cds.unistra.fr/simbad/sim-id?Ident=${MAIN_ID}&NbIdent=1")));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		return colInfo;
 	}
 
